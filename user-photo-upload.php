@@ -257,6 +257,9 @@ function user_profile_photo_settings_page_html() {
             submit_button( esc_html__( 'Save Changes', 'user-photo-upload' ) );
         ?>
     </form>
+    <hr />
+    <!-- Plugin documentation link. This text is not localized. -->
+    <p><a href="<?php echo esc_url( plugins_url( 'readme.txt', __FILE__ ) ); ?>" target="_blank">Plugin Documentation</a></p>
 </div>
 <?php
 }
@@ -508,17 +511,29 @@ function user_profile_photo_avatar( $avatar, $id_or_email, $size, $default, $alt
                     );
                 }
             }
-            $avatar = sprintf(
-                '<img alt="%s" src="%s" class="avatar avatar-%d photo" height="%d" width="%d" style="%s" />',
-                esc_attr( $alt ),
-                esc_url( $profile_photo ),
-                (int) $size,
-                (int) $size,
-                (int) $size,
-                esc_attr( $style )
-            );
+            // Attempt to get attachment ID from URL. If found, use wp_get_attachment_image.
+            $attachment_id = attachment_url_to_postid( $profile_photo );
+            if ( $attachment_id ) {
+                $attr = array(
+                    'style' => $style,
+                    'alt'   => $alt,
+                );
+                return wp_get_attachment_image( $attachment_id, array( $size, $size ), false, $attr );
+            } else {
+                // WARNING: As user-supplied images are used, wp_get_attachment_image() cannot be applied.
+                return sprintf(
+                    '<img alt="%s" src="%s" class="avatar avatar-%d photo" height="%d" width="%d" style="%s" />',
+                    esc_attr( $alt ),
+                    esc_url( $profile_photo ),
+                    (int) $size,
+                    (int) $size,
+                    (int) $size,
+                    esc_attr( $style )
+                );
+            }
         }
     }
     return $avatar;
 }
 add_filter( 'get_avatar', 'user_profile_photo_avatar', 10, 5 );
+?>
