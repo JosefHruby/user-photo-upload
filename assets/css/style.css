@@ -1,0 +1,78 @@
+/* Container for the profile photo section */
+.profile-photo-container {
+    max-width: 600px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+/* Photo preview container */
+.profile-photo-preview {
+    margin-bottom: 10px;
+}
+.profile-photo-preview img {
+    max-width: 150px;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+/* Photo URL input styling */
+.photo-url-container {
+    margin-bottom: 10px;
+}
+.photo-url-container input[type="text"] {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* Button styling for uploading and removing photo */
+.photo-buttons {
+    margin-bottom: 20px;
+    text-align: left;
+}
+.photo-buttons input[type="button"] {
+    margin-right: 10px;
+    background: #6B21A8;
+    border-color: #581C87;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    text-shadow: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.photo-buttons input[type="button"]:hover {
+    background: #7C3AED;
+    border-color: #6B21A8;
+    color: white;
+}
+.photo-buttons input[type="button"]:focus {
+    box-shadow: 0 0 0 1px #fff, 0 0 0 3px #7C3AED;
+    outline: none;
+}
+
+/* Filters container styling */
+#photo-filters-container {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+/* Individual filter controls */
+.photo-filter {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.photo-filter label {
+    flex: 0 0 150px;
+    margin-right: 10px;
+    text-align: left;
+}
+.photo-filter input,
+.photo-filter select {
+    flex: 1;
+    max-width: 200px;
+}
