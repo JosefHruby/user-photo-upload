@@ -3,15 +3,15 @@ Contributors: rubyvio
 Donate link: https://www.rubyvio.com/donate
 Tags: user profile, photo upload, avatar, customization, media uploader
 Requires at least: 5.0
-Tested up to: 6.2
+Tested up to: 6.7
 Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-User Photo Upload provides an easy way for users to upload, edit, and customize their profile photos in the WordPress admin. It seamlessly integrates with the native media uploader and offers various image customization options.
+User Photo Upload provides an easy way for users to upload, edit, and customize their profile photos in the WordPress admin. It integrates with the native media uploader and offers various customization options.
 
 == Short Description ==
-An intuitive plugin to upload and customize user profile photos with preset filters and style adjustments.
+Upload and customize user profile photos with filters and style adjustments.
 
 == Description ==
 The User Photo Upload plugin allows users to upload their own profile photo using the WordPress Media Uploader. It offers preset filters (e.g., sepia, grayscale, vintage) as well as custom adjustments for brightness, contrast, saturation, grayscale, border styling, and corner rounding. The plugin enhances the user profile pages (profile.php, user-edit.php, user-new.php) with an intuitive interface, displays the uploaded photo as the user’s avatar with custom CSS filters, and adds a custom column in the admin users list for quick identification.
@@ -61,6 +61,8 @@ Uploaded photo URLs and filter settings are saved to user meta and applied dynam
 == Custom Avatar Functionality ==
 The plugin hooks into the `get_avatar` filter. If a user has an uploaded profile photo, it constructs an `<img>` element with the applied custom styles and returns it as the user’s avatar.
 
+*Note:* Since the plugin uses user-supplied image URLs rather than attachment IDs, functions like `wp_get_attachment_image()` cannot be applied.
+
 == Admin Users List Enhancement ==
 A custom column is added in the WordPress admin users list to display the user’s profile photo with applied filters, facilitating quick identification.
 
@@ -86,7 +88,9 @@ Developers can extend the plugin by:
 * Utilizing available hooks and filters to integrate additional functionality.
 
 == Support & Updates ==
-For support, documentation, or to report issues, please visit the plugin website: [https://www.rubyvio.com](https://www.rubyvio.com). Future updates and enhancements will be documented in the changelog provided with each new release.
+For support, documentation, or to report issues, please visit the plugin website: [https://www.rubyvio.com](https://www.rubyvio.com).  
+For source code and the latest releases, visit the GitHub repository:  
+[https://github.com/JosefHruby/user-photo-upload/releases/new](https://github.com/JosefHruby/user-photo-upload/releases/new)
 
 == Changelog ==
 = 1.0 =
@@ -121,4 +125,3 @@ For support, documentation, or to report issues, please visit the plugin website
 * Final refinements in media uploader integration and filter controls.
 * Ensured plugin fields are displayed between "Personal Options" and "Name" on all user profile pages, including new user creation.
 * Complete compliance with WordPress.org guidelines regarding security, versioning, and internationalization.
-
