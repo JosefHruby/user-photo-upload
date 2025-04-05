@@ -1,0 +1,243 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: User Photo Upload\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-05 00:26+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.7.1; wp-6.7.2\n"
+"X-Domain: user-photo-upload"
+
+#. Description of the plugin
+msgid ""
+"Allows users to upload their own profile photo with editing and "
+"customization options."
+msgstr ""
+
+#: user-photo-upload.php:278
+msgid "Bold"
+msgstr ""
+
+#: user-photo-upload.php:549
+msgid "Border Color:"
+msgstr ""
+
+#: user-photo-upload.php:540
+msgid "Border Style:"
+msgstr ""
+
+#: user-photo-upload.php:536
+msgid "Border Width (px):"
+msgstr ""
+
+#: user-photo-upload.php:516
+msgid "Brightness:"
+msgstr ""
+
+#: user-photo-upload.php:172
+msgid "Button Background Color"
+msgstr ""
+
+#: user-photo-upload.php:141
+msgid "Button Bold"
+msgstr ""
+
+#: user-photo-upload.php:179
+msgid "Button Border Color"
+msgstr ""
+
+#: user-photo-upload.php:164
+msgid "Button Font Color"
+msgstr ""
+
+#: user-photo-upload.php:124
+msgid "Button Font Family"
+msgstr ""
+
+#: user-photo-upload.php:132
+msgid "Button Font Size (px)"
+msgstr ""
+
+#: user-photo-upload.php:217
+msgid "Button Hover Radius (px)"
+msgstr ""
+
+#: user-photo-upload.php:148
+msgid "Button Italic"
+msgstr ""
+
+#: user-photo-upload.php:187
+msgid "Button Radius (px)"
+msgstr ""
+
+#: user-photo-upload.php:155
+msgid "Button Underline"
+msgstr ""
+
+#: user-photo-upload.php:520
+msgid "Contrast:"
+msgstr ""
+
+#: user-photo-upload.php:509
+msgid "Cool"
+msgstr ""
+
+#: user-photo-upload.php:532
+msgid "Corner Rounding (px):"
+msgstr ""
+
+#: user-photo-upload.php:543
+msgid "Dashed"
+msgstr ""
+
+#: user-photo-upload.php:544
+msgid "Dotted"
+msgstr ""
+
+#: user-photo-upload.php:545
+msgid "Double"
+msgstr ""
+
+#: user-photo-upload.php:512
+msgid "Dramatic"
+msgstr ""
+
+#: user-photo-upload.php:511
+msgid "Duotone"
+msgstr ""
+
+#: user-photo-upload.php:265
+msgid ""
+"Google Fonts (e.g., Roboto, Open Sans) must be manually loaded in your theme."
+msgstr ""
+
+#: user-photo-upload.php:505
+msgid "Grayscale"
+msgstr ""
+
+#: user-photo-upload.php:528
+msgid "Grayscale:"
+msgstr ""
+
+#: user-photo-upload.php:507
+msgid "High Brightness"
+msgstr ""
+
+#: user-photo-upload.php:506
+msgid "High Contrast"
+msgstr ""
+
+#: user-photo-upload.php:202
+msgid "Hover Background Color"
+msgstr ""
+
+#: user-photo-upload.php:209
+msgid "Hover Border Color"
+msgstr ""
+
+#: user-photo-upload.php:195
+msgid "Hover Font Color"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://www.rubyvio.com"
+msgstr ""
+
+#: user-photo-upload.php:284
+msgid "Italic"
+msgstr ""
+
+#. Author of the plugin
+msgid "Josef Hrubý - Rubyvio.com"
+msgstr ""
+
+#: user-photo-upload.php:503
+msgid "None"
+msgstr ""
+
+#: user-photo-upload.php:356
+msgid "Plugin Documentation"
+msgstr ""
+
+#: user-photo-upload.php:501
+msgid "Preset Filter:"
+msgstr ""
+
+#: user-photo-upload.php:472 user-photo-upload.php:479
+msgid "Profile Photo"
+msgstr ""
+
+#: user-photo-upload.php:115
+msgid "Remove Button Text"
+msgstr ""
+
+#: user-photo-upload.php:237 user-photo-upload.php:369
+#: user-photo-upload.php:442
+msgid "Remove Photo"
+msgstr ""
+
+#: user-photo-upload.php:524
+msgid "Saturation:"
+msgstr ""
+
+#: user-photo-upload.php:350
+msgid "Save Changes"
+msgstr ""
+
+#: user-photo-upload.php:504
+msgid "Sepia"
+msgstr ""
+
+#: user-photo-upload.php:226
+msgid "Set the text and styling for the profile photo buttons."
+msgstr ""
+
+#: user-photo-upload.php:542
+msgid "Solid"
+msgstr ""
+
+#: user-photo-upload.php:290
+msgid "Underline"
+msgstr ""
+
+#: user-photo-upload.php:107
+msgid "Upload Button Text"
+msgstr ""
+
+#: user-photo-upload.php:231 user-photo-upload.php:367
+#: user-photo-upload.php:441
+msgid "Upload Photo"
+msgstr ""
+
+#: user-photo-upload.php:399
+msgid "Upload Profile Photo"
+msgstr ""
+
+#: user-photo-upload.php:400
+msgid "Use Photo"
+msgstr ""
+
+#. Name of the plugin
+#: user-photo-upload.php:331
+msgid "User Photo Upload"
+msgstr ""
+
+#: user-photo-upload.php:330 user-photo-upload.php:345
+msgid "User Photo Upload Settings"
+msgstr ""
+
+#: user-photo-upload.php:508
+msgid "Vintage"
+msgstr ""
+
+#: user-photo-upload.php:510
+msgid "Warm"
+msgstr ""
