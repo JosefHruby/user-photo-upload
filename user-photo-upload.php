@@ -8,7 +8,7 @@
  * Text Domain: user-photo-upload
  * Domain Path: /languages
  * License: GPL v2 or later
- */
+ */ 
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
