@@ -3,7 +3,7 @@
  * Plugin Name: User Photo Upload
  * Plugin URI: https://www.rubyvio.com
  * Description: Allows users to upload their own profile photo with editing and customization options.
- * Version: 1.2.2
+ * Version: 1.2.3
  * Author: Josef Hrubý - Rubyvio.com
  * Text Domain: user-photo-upload
  * Domain Path: /languages
@@ -23,32 +23,68 @@ function user_profile_photo_load_textdomain() {
 add_action( 'plugins_loaded', 'user_profile_photo_load_textdomain' );
 
 /**
+ * Enqueue Google Fonts (Montserrat, Inter) for front-end
+ */
+function user_profile_photo_enqueue_google_fonts() {
+    wp_enqueue_style( 'montserrat-inter-fonts', 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Inter:wght@400;700&display=swap', false );
+}
+add_action( 'wp_enqueue_scripts', 'user_profile_photo_enqueue_google_fonts' );
+
+/**
+ * Enqueue Google Fonts (Montserrat, Inter) in admin pages as well
+ */
+function user_profile_photo_enqueue_google_fonts_admin() {
+    wp_enqueue_style( 'montserrat-inter-fonts', 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Inter:wght@400;700&display=swap', false );
+}
+add_action( 'admin_enqueue_scripts', 'user_profile_photo_enqueue_google_fonts_admin' );
+
+/**
  * Sanitization callback for settings.
  */
 function user_profile_photo_settings_sanitize( $input ) {
     $new_input = array();
-    if ( isset( $input['upload_btn_text'] ) )
+    if ( isset( $input['upload_btn_text'] ) ) {
          $new_input['upload_btn_text'] = sanitize_text_field( wp_unslash( $input['upload_btn_text'] ) );
-    if ( isset( $input['remove_btn_text'] ) )
+    }
+    if ( isset( $input['remove_btn_text'] ) ) {
          $new_input['remove_btn_text'] = sanitize_text_field( wp_unslash( $input['remove_btn_text'] ) );
-    if ( isset( $input['button_font_family'] ) )
+    }
+    if ( isset( $input['button_font_family'] ) ) {
          $new_input['button_font_family'] = sanitize_text_field( wp_unslash( $input['button_font_family'] ) );
-    if ( isset( $input['button_font_color'] ) )
+    }
+    if ( isset( $input['button_font_size'] ) ) {
+         $new_input['button_font_size'] = sanitize_text_field( wp_unslash( $input['button_font_size'] ) );
+    }
+    if ( isset( $input['button_font_color'] ) ) {
          $new_input['button_font_color'] = sanitize_hex_color( wp_unslash( $input['button_font_color'] ) );
-    if ( isset( $input['button_bg_color'] ) )
+    }
+    if ( isset( $input['button_bg_color'] ) ) {
          $new_input['button_bg_color'] = sanitize_hex_color( wp_unslash( $input['button_bg_color'] ) );
-    if ( isset( $input['button_border_color'] ) )
+    }
+    if ( isset( $input['button_border_color'] ) ) {
          $new_input['button_border_color'] = sanitize_hex_color( wp_unslash( $input['button_border_color'] ) );
-    if ( isset( $input['button_border_radius'] ) )
+    }
+    if ( isset( $input['button_border_radius'] ) ) {
          $new_input['button_border_radius'] = sanitize_text_field( wp_unslash( $input['button_border_radius'] ) );
-    if ( isset( $input['button_hover_font_color'] ) )
+    }
+    if ( isset( $input['button_hover_font_color'] ) ) {
          $new_input['button_hover_font_color'] = sanitize_hex_color( wp_unslash( $input['button_hover_font_color'] ) );
-    if ( isset( $input['button_hover_bg_color'] ) )
+    }
+    if ( isset( $input['button_hover_bg_color'] ) ) {
          $new_input['button_hover_bg_color'] = sanitize_hex_color( wp_unslash( $input['button_hover_bg_color'] ) );
-    if ( isset( $input['button_hover_border_color'] ) )
+    }
+    if ( isset( $input['button_hover_border_color'] ) ) {
          $new_input['button_hover_border_color'] = sanitize_hex_color( wp_unslash( $input['button_hover_border_color'] ) );
-    if ( isset( $input['button_hover_border_radius'] ) )
+    }
+    if ( isset( $input['button_hover_border_radius'] ) ) {
          $new_input['button_hover_border_radius'] = sanitize_text_field( wp_unslash( $input['button_hover_border_radius'] ) );
+    }
+
+    // Nová nastavení pro stylizaci písma tlačítka
+    $new_input['button_bold']      = isset( $input['button_bold'] ) ? 1 : 0;
+    $new_input['button_italic']    = isset( $input['button_italic'] ) ? 1 : 0;
+    $new_input['button_underline'] = isset( $input['button_underline'] ) ? 1 : 0;
+
     return $new_input;
 }
 
@@ -90,6 +126,39 @@ function user_profile_photo_register_settings() {
         'user_profile_photo_settings',
         'user_profile_photo_main_section'
     );
+
+    add_settings_field(
+        'button_font_size',
+        __( 'Button Font Size (px)', 'user-photo-upload' ),
+        'user_profile_photo_font_size_cb',
+        'user_profile_photo_settings',
+        'user_profile_photo_main_section'
+    );
+
+    // === Nově přesunuté pole pro Bold, Italic a Underline pod "Button Font Size" ===
+    add_settings_field(
+        'button_bold',
+        __( 'Button Bold', 'user-photo-upload' ),
+        'user_profile_photo_button_bold_cb',
+        'user_profile_photo_settings',
+        'user_profile_photo_main_section'
+    );
+    add_settings_field(
+        'button_italic',
+        __( 'Button Italic', 'user-photo-upload' ),
+        'user_profile_photo_button_italic_cb',
+        'user_profile_photo_settings',
+        'user_profile_photo_main_section'
+    );
+    add_settings_field(
+        'button_underline',
+        __( 'Button Underline', 'user-photo-upload' ),
+        'user_profile_photo_button_underline_cb',
+        'user_profile_photo_settings',
+        'user_profile_photo_main_section'
+    );
+    // === Konec přesunutých polí ===
+
     add_settings_field(
         'button_font_color',
         __( 'Button Font Color', 'user-photo-upload' ),
@@ -97,6 +166,7 @@ function user_profile_photo_register_settings() {
         'user_profile_photo_settings',
         'user_profile_photo_main_section'
     );
+
     add_settings_field(
         'button_bg_color',
         __( 'Button Background Color', 'user-photo-upload' ),
@@ -112,7 +182,6 @@ function user_profile_photo_register_settings() {
         'user_profile_photo_main_section'
     );
 
-    // Changed label to "Button Radius (px)"
     add_settings_field(
         'button_border_radius',
         __( 'Button Radius (px)', 'user-photo-upload' ),
@@ -143,7 +212,6 @@ function user_profile_photo_register_settings() {
         'user_profile_photo_main_section'
     );
 
-    // Changed label to "Button Hover Radius (px)"
     add_settings_field(
         'button_hover_border_radius',
         __( 'Button Hover Radius (px)', 'user-photo-upload' ),
@@ -185,9 +253,9 @@ function user_profile_photo_text_input( $key, $default = '' ) {
 }
 
 function user_profile_photo_font_family_cb() {
-    $fonts = array( 'Arial', 'Verdana', 'Tahoma', 'Georgia', 'Times New Roman', 'Roboto', 'Open Sans', 'Lato', 'Montserrat', 'Poppins' );
+    $fonts = array( 'Arial', 'Verdana', 'Tahoma', 'Georgia', 'Times New Roman', 'Roboto', 'Open Sans', 'Lato', 'Montserrat', 'Inter', 'Poppins' );
     $options = get_option( 'user_profile_photo_settings' );
-    $current = isset( $options['button_font_family'] ) ? $options['button_font_family'] : 'Arial';
+    $current = isset( $options['button_font_family'] ) ? $options['button_font_family'] : 'Montserrat';
 
     echo '<select name="user_profile_photo_settings[button_font_family]">';
     foreach ( $fonts as $font ) {
@@ -195,6 +263,31 @@ function user_profile_photo_font_family_cb() {
     }
     echo '</select>';
     echo '<p class="description">' . esc_html__( 'Google Fonts (e.g., Roboto, Open Sans) must be manually loaded in your theme.', 'user-photo-upload' ) . '</p>';
+}
+
+function user_profile_photo_font_size_cb() {
+    $options = get_option( 'user_profile_photo_settings' );
+    $val = isset( $options['button_font_size'] ) ? $options['button_font_size'] : '14';
+    echo '<input type="number" name="user_profile_photo_settings[button_font_size]" value="' . esc_attr( $val ) . '" style="width: 100px;">';
+}
+
+// Nové callbacky pro stylizaci textu tlačítka
+function user_profile_photo_button_bold_cb() {
+    $options = get_option( 'user_profile_photo_settings' );
+    $checked = ! empty( $options['button_bold'] ) ? 'checked' : '';
+    echo '<input type="checkbox" name="user_profile_photo_settings[button_bold]" ' . $checked . ' value="1"> ' . esc_html__( 'Bold', 'user-photo-upload' );
+}
+
+function user_profile_photo_button_italic_cb() {
+    $options = get_option( 'user_profile_photo_settings' );
+    $checked = ! empty( $options['button_italic'] ) ? 'checked' : '';
+    echo '<input type="checkbox" name="user_profile_photo_settings[button_italic]" ' . $checked . ' value="1"> ' . esc_html__( 'Italic', 'user-photo-upload' );
+}
+
+function user_profile_photo_button_underline_cb() {
+    $options = get_option( 'user_profile_photo_settings' );
+    $checked = ! empty( $options['button_underline'] ) ? 'checked' : '';
+    echo '<input type="checkbox" name="user_profile_photo_settings[button_underline]" ' . $checked . ' value="1"> ' . esc_html__( 'Underline', 'user-photo-upload' );
 }
 
 function user_profile_photo_font_color_cb() {
@@ -259,7 +352,8 @@ function user_profile_photo_settings_page_html() {
     </form>
     <hr />
     <!-- Plugin documentation link. This text is not localized. -->
-    <p><a href="<?php echo esc_url( plugins_url( 'readme.txt', __FILE__ ) ); ?>" target="_blank">Plugin Documentation</a></p>
+    <p><a href="<?php echo esc_url( plugins_url( 'readme.txt', __FILE__ ) ); ?>"
+            target="_blank"><?php esc_html_e( 'Plugin Documentation', 'user-photo-upload' ); ?></a></p>
 </div>
 <?php
 }
@@ -309,8 +403,18 @@ function user_profile_photo_enqueue_scripts( $hook ) {
     ) );
 
     $options = get_option( 'user_profile_photo_settings', array() );
+    
+    // Přidání stylů dle nastavení v administraci
+    $font_weight     = ! empty( $options['button_bold'] ) ? 'bold' : 'normal';
+    $font_style      = ! empty( $options['button_italic'] ) ? 'italic' : 'normal';
+    $text_decoration = ! empty( $options['button_underline'] ) ? 'underline' : 'none';
+
     $inline_css = '.profile-photo-container .photo-buttons input[type="button"] {
-        font-family: ' . esc_attr( $options['button_font_family'] ?? 'Arial' ) . ';
+        font-family: ' . esc_attr( $options['button_font_family'] ?? 'Montserrat' ) . ';
+        font-size: ' . intval( $options['button_font_size'] ?? 14 ) . 'px;
+        font-weight: ' . $font_weight . ';
+        font-style: ' . $font_style . ';
+        text-decoration: ' . $text_decoration . ';
         color: ' . esc_attr( $options['button_font_color'] ?? '#000000' ) . ';
         background-color: ' . esc_attr( $options['button_bg_color'] ?? '#f1f1f1' ) . ';
         border: 1px solid ' . esc_attr( $options['button_border_color'] ?? '#cccccc' ) . ';
@@ -336,7 +440,8 @@ function user_profile_photo_activate() {
     $default_settings = array(
         'upload_btn_text'           => esc_html__( 'Upload Photo', 'user-photo-upload' ),
         'remove_btn_text'           => esc_html__( 'Remove Photo', 'user-photo-upload' ),
-        'button_font_family'        => 'Arial',
+        'button_font_family'        => 'Montserrat',
+        'button_font_size'          => '14',
         'button_font_color'         => '#ffffff',
         'button_bg_color'           => '#2271b1',
         'button_border_color'       => '#2271b1',
@@ -344,6 +449,9 @@ function user_profile_photo_activate() {
         'button_hover_font_color'   => '#ffffff',
         'button_hover_bg_color'     => '#135e96',
         'button_hover_border_color' => '#135e96',
+        'button_bold'               => 0,
+        'button_italic'             => 0,
+        'button_underline'          => 0,
     );
 
     if ( false === get_option( 'user_profile_photo_settings' ) ) {
@@ -536,4 +644,3 @@ function user_profile_photo_avatar( $avatar, $id_or_email, $size, $default, $alt
     return $avatar;
 }
 add_filter( 'get_avatar', 'user_profile_photo_avatar', 10, 5 );
-?>
