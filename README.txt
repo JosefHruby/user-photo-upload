@@ -121,7 +121,13 @@ For source code and the latest releases, visit the GitHub repository:
 * Readme and documentation updates: Added "Tested up to:" header and ensured Stable Tag matches the plugin version.
 * Fixed additional escaping warnings as per WordPress Plugin Guidelines.
 
-= 1.2.2 (Final Stable Release) =
+= 1.2.2  =
 * Final refinements in media uploader integration and filter controls.
 * Ensured plugin fields are displayed between "Personal Options" and "Name" on all user profile pages, including new user creation.
 * Complete compliance with WordPress.org guidelines regarding security, versioning, and internationalization.
+
+= 1.2.3 (Final Stable Release) =
+Added a new setting for button font size to allow finer control over the button appearance.
+Introduced options for button text styling: Bold, Italic, and Underline can now be enabled via the settings.
+Fixed the loading of the Montserrat font, ensuring it loads correctly on both the front-end and in the admin.
+Various minor improvements and bug fixes for enhanced compatibility and performance.
